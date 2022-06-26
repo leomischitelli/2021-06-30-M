@@ -2,37 +2,29 @@ package it.polito.tdp.genes.model;
 
 public class Interactions {
 	
-	private Genes gene1 ;
-	private Genes gene2 ;
-	private String type ;
+	private int chromosome1;
+	private int chromosome2;
 	private Double expressionCorr ;
 	
-	public Interactions(Genes gene1, Genes gene2, String type, Double expressionCorr) {
+	
+	public Interactions(int chromosome1, int chromosome2, Double expressionCorr) {
 		super();
-		this.gene1 = gene1;
-		this.gene2 = gene2;
-		this.type = type;
+		this.chromosome1 = chromosome1;
+		this.chromosome2 = chromosome2;
 		this.expressionCorr = expressionCorr;
 	}
 	
-	public Genes getGene1() {
-		return gene1;
+	
+	public int getChromosome1() {
+		return chromosome1;
 	}
-	public void setGene1(Genes gene1) {
-		this.gene1 = gene1;
+
+
+	public int getChromosome2() {
+		return chromosome2;
 	}
-	public Genes getGene2() {
-		return gene2;
-	}
-	public void setGene2(Genes gene2) {
-		this.gene2 = gene2;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+
+
 	public Double getExpressionCorr() {
 		return expressionCorr;
 	}

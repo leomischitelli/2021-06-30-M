@@ -1,0 +1,26 @@
+OBIETTIVO: sequenza peso max
+
+
+INIZIO:
+for chromo c : vertex set
+-aggiungi alla lista
+-PARTE RICO(seqAttuale, 0.0)
+-rimuovi
+
+
+
+
+PROCEDURA:
+
+prendi UltimoChromo
+getOutgoingSetOf(ultimoChromo)
+for(Chromo c : setUltimo)
+-seqAttuale !contains
+-if PESO ultimo -> c > soglia
+--aggiungi
+--ESPLORA(seqAttuale, pesoAttuale + PESO)
+--rimuovi
+
+fuori dal for : non so piu dove andare, terminazione
+-se pesoAttuale > pesoMax
+-aggiorna

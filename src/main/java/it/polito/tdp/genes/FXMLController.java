@@ -5,6 +5,7 @@
 package it.polito.tdp.genes;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.genes.model.Model;
@@ -38,11 +39,46 @@ public class FXMLController {
 
     @FXML
     void doContaArchi(ActionEvent event) {
+    	
+    	try {
+    		
+    		Double soglia = Double.parseDouble(txtSoglia.getText());
+    		if(soglia < this.model.getMin() || soglia > this.model.getMax()) {
+    			txtResult.appendText("Inserire un numero compreso fra " + this.model.getMin() + " e " + this.model.getMax() + "\n");
+    			return;
+    		}
+    		this.model.contaArchi(soglia);
+    		txtResult.appendText("\nSoglia " + soglia + " --> Maggiori " + this.model.getMaggiori() + ", minori " + this.model.getMinori());
+    		
+    	}catch (NumberFormatException e) {
+    		txtResult.appendText("\nInserire un numero valido prima di procedere\n");
+    	}
 
     }
 
     @FXML
     void doRicerca(ActionEvent event) {
+    	
+    	try {
+    		
+    		Double soglia = Double.parseDouble(txtSoglia.getText());
+    		
+    		if(soglia < this.model.getMin() || soglia > this.model.getMax()) {
+    			txtResult.appendText("Inserire un numero compreso fra " + this.model.getMin() + " e " + this.model.getMax() + "\n");
+    			return;
+    			}
+    		
+    		List<Integer> cammino = this.model.ricercaCammino(soglia);
+    		txtResult.appendText("\nTrovato cammino con " + cammino.size() + " cromosomi di lunghezza " + this.model.getPesoMax() + "\n");
+    		for(Integer i : cammino) {
+    			txtResult.appendText(i + " ");
+    		}
+    		
+    		txtSoglia.clear();
+    		
+    	}catch (NumberFormatException e) {
+    		txtResult.appendText("\nInserire un numero valido prima di procedere\n");
+    	}
 
     }
 
@@ -57,6 +93,10 @@ public class FXMLController {
 
 	public void setModel(Model model) {
 		this.model = model ;
+		this.model.creaGrafo();
+		txtResult.setText("Grafo creato!\nNumero vertici: " + model.getNumeroVertici());
+		txtResult.appendText("\nNumero archi: " + model.getNumeroArchi());
+		txtResult.appendText("\nPeso minimo: " + model.getMin() + "\nPeso massimo: " + model.getMax());
 		
 	}
 }
